@@ -1,0 +1,24 @@
+{
+  "name": "v8r-plugin-html-output",
+  "version": "0.1.0",
+  "description": "HTML output plugin for v8r",
+  "exports": "./index.js",
+  "type": "module",
+  "files": ["*.js"],
+  "scripts": {
+    "test": "node --test --experimental-test-coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chris48s/v8r-plugin-html-output.git"
+  },
+  "author": "chris48s",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chris48s/v8r-plugin-html-output/issues"
+  },
+  "homepage": "https://github.com/chris48s/v8r-plugin-html-output#readme",
+  "peerDependencies": {
+    "v8r": ">=5.0.0"
+  }
+}
