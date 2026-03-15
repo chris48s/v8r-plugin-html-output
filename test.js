@@ -1,5 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert";
+import { spawnSync } from "node:child_process";
 import HtmlOutput, { isHttpUrl, getSchemaHtml } from "./index.js";
 
 describe("isHttpUrl", function () {
@@ -80,5 +81,21 @@ describe("HtmlOutput.getAllResultsLogMessage", function () {
 
     assert.equal((report.match(/<td>should be integer<\/td>/g) ?? []).length, 1);
     assert.equal((report.match(/<td>is required<\/td>/g) ?? []).length, 1);
+  });
+});
+
+describe("Integration tests", function () {
+  it("lists html as an output-format choice in --help output", function () {
+    const result = spawnSync("npx", ["v8r", "--help"], { encoding: "utf8" });
+    assert(result.stdout.includes('choices: "html",'), result.stdout);
+  });
+
+  it("outputs html summary after validation", function () {
+    const result = spawnSync(
+      "npx",
+      ["v8r", "package.json", "--output-format", "html"],
+      { encoding: "utf8" },
+    );
+    assert(result.stdout.includes("<!DOCTYPE html>"), result.stdout);
   });
 });
